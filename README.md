@@ -121,7 +121,7 @@ yaml
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/mojtabahadei12/letterboxd.git
+   git clone https://github.com/mojtabahadei81/letterboxd.git
    cd film-review-app
 Install dependencies:
 
