@@ -11,11 +11,7 @@ This project is a full-stack web application for managing and reviewing films an
 - [Technologies](#technologies)
 - [Project Structure](#project-structure)
 - [Installation & Setup](#installation--setup)
-- [Docker Instructions](#docker-instructions)
 - [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [Credits & License](#credits--license)
 
 ---
 
@@ -111,39 +107,20 @@ Film-Review-App/
    ```bash
    git clone https://github.com/mojtabahadei81/letterboxd.git
    cd film-review-app
-Install dependencies:
 
-bash
-npm install
-Environment Variables:
+2. **Install dependencies:**
 
-Run the application:
+   ```bash
+   npm install
 
-bash
-npm start
+3. **Run the application:**
+
+   ```bash
+   npm start
+
 The application will be available at: http://localhost:3000
 
 Usage
 Dashboard: Navigate to /user/dashboard to view the list of movies with filtering options.
 Movie Details: Click on a movie to view its details and existing reviews at /movies/:id.
 Submit Review: On the movie details page, if you are logged in, fill in the review form and click Submit Review. The app will validate the input and redirect you back to the movie details page.
-API Endpoints
-Movies:
-GET /movies/:id – Get details for a movie along with its reviews.
-Reviews:
-POST /reviews – Submit a new review (requires authentication).
-Users:
-Additional endpoints for user login, registration, and dashboard management are provided.
-Each API endpoint performs necessary validation and data persistence using MongoDB.
-
-Contributing
-The project is intended for collaborative work.
-For the first three projects, teams can consist of up to 2 members; for the subsequent three projects, teams may consist of up to 3 members.
-All commits must be made to a GitHub repository with a detailed commit history.
-Each team member should be familiar with all aspects of the codebase and ready to answer technical questions during the presentation.
-Any form of plagiarism or copying from other sources (including GitHub repositories or classmates) will result in a zero grade.
-
-Happy Coding!
-
-
-
