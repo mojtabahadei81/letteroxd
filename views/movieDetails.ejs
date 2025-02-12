@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movie.title %> Details</title>
+  <link rel="stylesheet" href="/stylesheets/userstyles.css">
+</head>
+<body>
+  <header class="header-container">
+    <nav>
+      <a href="/users/dashboard">Back to Dashboard</a>
+      <a href="/auth/logout" class="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="movie-details">
+      <h1><%= movie.title %></h1>
+      <img src="/images/<%= movie.poster %>" alt="<%= movie.title %> Poster" />
+      <p><strong>Genre:</strong> <%= movie.genre %></p>
+      <p><strong>Release Year:</strong> <%= movie.releaseYear %></p>
+      <p><strong>Rating:</strong> <%= movie.rating %>/5</p>
+      <p><%= movie.description %></p>
+    </section>
+
+    <section class="reviews-section">
+      <h2>Reviews</h2>
+      <% if (reviews.length > 0) { %>
+        <% reviews.forEach(review => { %>
+          <div class="review">
+            <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+            <p><%= review.text %></p>
+            <p><small>By: <%= review.user.name %> on <%= review.createdAt.toLocaleDateString() %></small></p>
+            
+            <% if (user && user._id.toString() !== review.user._id.toString()) { %>
+              <button class="follow-btn" data-user-id="<%= review.user._id %>">
+                Follow <%= review.user.name %>
+              </button>
+            <% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No reviews yet. Be the first to review this movie!</p>
+      <% } %>
+    </section>
+
+    <section class="review-form-section">
+      <h2>Write a Review</h2>
+      <% if (user) { %>
+        <form action="/reviews/" method="POST">
+          <input type="hidden" name="movieId" value="<%= movie._id %>">
+          <div>
+            <label for="text">Review:</label>
+            <textarea name="text" id="text" rows="4" required></textarea>
+          </div>
+          <div>
+            <label for="rating">Rating (1 - 5):</label>
+            <input type="number" name="rating" id="rating" min="1" max="5" step="0.25" required>
+          </div>
+          <button type="submit">Submit Review</button>
+        </form>
+      <% } else { %>
+        <p>You must be logged in to submit a review.</p>
+      <% } %>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+
+  <script>
+    document.querySelectorAll('.follow-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const userId = button.getAttribute('data-user-id');
+        try {
+          const response = await fetch(`/follow/${userId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (response.ok) {
+            alert('User followed successfully!');
+            button.disabled = true;
+            button.textContent = 'Following';
+          } else {
+            const data = await response.json();
+            alert(data.message || 'An error occurred.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Failed to follow user.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

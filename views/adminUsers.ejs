@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/adminstyles.css">
+    
+</head>
+
+<body>
+  <header>
+    <h1>Manage Users</h1>
+    <a href="/admin/dashboard" class="btn">Back to Dashboard</a>
+  </header>
+
+  <main>
+    <table border="1" cellpadding="10" cellspacing="0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach((user, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td>
+              <a href="/admin/users/<%= user._id %>/edit">Edit</a> |
+              <form action="/admin/users/<%= user._id %>/delete" method="POST" style="display: inline;">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

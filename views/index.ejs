@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">MovieApp</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/signup">Sign Up</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Top Rated Movies -->
+    <section class="movies-section">
+        <h2>Top Rated Movies</h2>
+        <div class="movies-grid">
+            <% topRatedMovies.forEach(movie => { %>
+                <div class="movie-card">
+                    <img src="/images/<%= movie.poster %>" alt="<%= movie.title %>">
+                    <div class="movie-info">
+                        <h3><%= movie.title %></h3>
+                        <p>Rating: <%= movie.averageRating.toFixed(1) %></p>
+                        <!-- <a href="/movies/<%=// movie._id %>" class="btn">Details</a> -->
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Newest Movies -->
+    <section class="movies-section">
+        <h2>Newest Movies</h2>
+        <div class="movies-grid">
+            <% newestMovies.forEach(movie => { %>
+                <div class="movie-card">
+                    <img src="/images/<%= movie.poster %>" alt="<%= movie.title %>">
+                    <div class="movie-info">
+                        <h3><%= movie.title %></h3>
+                        <p>Year: <%= movie.year %></p>
+                        <!-- <a href="/movies/<%= //movie._id %>" class="btn">Details</a> -->
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Trending Movies -->
+    <section class="movies-section">
+        <h2>Trending Movies</h2>
+        <div class="movies-grid">
+            <% trendingMovies.forEach(movie => { %>
+                <div class="movie-card">
+                    <img src="/images/<%= movie.poster %>" alt="<%= movie.title %>">
+                    <div class="movie-info">
+                        <h3><%= movie.title %></h3>
+                        <p>Views: <%= movie.viewCount %></p>
+                        <!-- <a href="/movies/<%= //movie._id %>" class="btn">Details</a> -->
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Popular Genres -->
+    <section class="genres-section">
+        <h2>Popular Genres</h2>
+        <div class="genres-grid">
+            <% popularGenres.forEach(genre => { %>
+                <div class="genre-card">
+                    <h3><%= genre._id %></h3>
+                    <p>Movies: <%= genre.count %></p>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

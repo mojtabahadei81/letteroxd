@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= friend.name %>'s Reviews</title>
+  <link rel="stylesheet" href="/stylesheets/userstyles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1><%= friend.name %>'s Reviews</h1>
+      <nav>
+        <ul>
+          <li><a href="/friends">Back to Friends</a></li>
+          <li><a href="/auth/logout" class="logout-btn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="friend-reviews">
+      <h2>Reviews</h2>
+      <% if (reviews.length > 0) { %>
+        <ul>
+          <% reviews.forEach(review => { %>
+            <li>
+              <div class="movie-info">
+                <img src="/images/<%= review.movie.poster %>" alt="<%= review.movie.title %> Poster">
+                <div>
+                  <h3><%= review.movie.title %></h3>
+                  <p><strong>Genre:</strong> <%= review.movie.genre %></p>
+                  <p><strong>Year:</strong> <%= review.movie.releaseYear %></p>
+                </div>
+              </div>
+              <div class="review-info">
+                <p><strong>Rating:</strong> <%= review.rating %>/5</p>
+                <p><%= review.text %></p>
+                <p><small>Reviewed on <%= review.createdAt.toLocaleDateString() %></small></p>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p><%= friend.name %> has not written any reviews yet.</p>
+      <% } %>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

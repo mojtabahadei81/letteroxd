@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Friends</title>
+  <link rel="stylesheet" href="/stylesheets/userstyles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Your Friends</h1>
+      <nav>
+        <ul>
+          <li><a href="/users/dashboard">Dashboard</a></li>
+          <li><a href="/auth/logout" class="logout-btn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="friends-list">
+      <h2>Friends</h2>
+      <% if (friends.length > 0) { %>
+        <ul>
+          <% friends.forEach(friend => { %>
+            <li>
+              <p><strong>Name:</strong> <%= friend.name %></p>
+              <p><strong>Email:</strong> <%= friend.email %></p>
+              <a href="/friends/<%= friend._id %>/reviews" class="view-reviews-btn">View Reviews</a>
+              <form action="/friends/remove/<%= friend._id %>" method="POST" style="display:inline;">
+                <button type="submit" class="remove-btn">Remove Friend</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>You have no friends yet.</p>
+      <% } %>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

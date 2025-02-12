@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/adminstyles.css">
+    
+</head>
+    
+<body>
+  <div class="form-container">
+    <h1>Add New Movie</h1>
+    <form action="/admin/movies/add" method="POST">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <label for="genre">Genre:</label>
+      <input type="text" id="genre" name="genre" required>
+
+      <label for="releaseYear">Release Year:</label>
+      <input type="number" id="releaseYear" name="releaseYear" required>
+
+      <label for="poster">Poster URL:</label>
+      <input type="text" id="poster" name="poster" required>
+
+      <label for="images">Images (comma-separated URLs):</label>
+      <input type="text" id="images" name="images">
+
+      <button type="submit" class="btn">Add Movie</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/adminstyles.css">
+    
+</head>
+
+<body>
+  <header>
+    <h1>Manage Movies & Series</h1>
+    <a href="/admin/dashboard" class="btn">Back to Dashboard</a>
+  </header>
+
+  <main>
+    <a href="/admin/movies/add" class="btn">Add New Movie</a>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin-top: 10px;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Poster</th>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>Release Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% movies.forEach((movie, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td>
+              <img src="/images/<%= movie.poster %>" alt="<%= movie.title %> Poster" style="width: 60px; height: auto; border-radius: 5px;">
+            </td>
+            <td><%= movie.title %></td>
+            <td><%= movie.genre %></td>
+            <td><%= movie.releaseYear %></td>
+            <td>
+              <a href="/admin/movies/<%= movie._id %>/edit">Edit</a> |
+              <form action="/admin/movies/<%= movie._id %>/delete" method="POST" style="display: inline;">
+                <button type="submit" class="btn delete-btn">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="/">Admin Panel</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/admin/dashboard">Dashboard</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    </ul>
+  </header>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="/admin/users">Manage Users</a></li>
+        <li><a href="/admin/movies">Manage Movies & Series</a></li>
+        <li><a href="/admin/reports">View Reports</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      <h1>Welcome, Admin</h1>
+      <p>Here you can manage the application, users, and movies.</p>
+    </main>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

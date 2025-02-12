@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/stylesheets/userstyles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Welcome, <%= user.name %>!</h1>
+      <nav>
+        <ul>
+          <li><a href="/friends">Friends</a></li>
+          <li><a href="/users/profile">Profile</a></li>
+          <li><a href="/auth/logout" class="logout-btn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="dashboard">
+      
+      <div class="activity-feed">
+        <h2>Friends' Activities</h2>
+        <% if (friendsActivities.length > 0) { %>
+          <ul>
+            <% friendsActivities.forEach(activity => { %>
+              <li>
+                <strong><%= activity.user.name %></strong> rated 
+                <strong><%= activity.movie.title %></strong> 
+                <span class="rating"><%= activity.rating %>/5</span>
+                <p><%= activity.text %></p>
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <p>No recent activities from your friends.</p>
+        <% } %>
+      </div>
+
+      <div class="movies-list">
+        <h2>Explore Movies</h2>
+        <div class="filters">
+          <form action="/users/dashboard" method="GET">
+            <select name="genre">
+              <option value="">Genre</option>
+              <option value="action">Action</option>
+              <option value="drama">Drama</option>
+              <option value="comedy">Comedy</option>
+            </select>
+            <select name="year">
+              <option value="">Year</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+            </select>
+            <select name="rating">
+              <option value="">Rating</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+              <option value="2">2</option>
+              <option value="1">1</option>
+            </select>
+            <button type="submit">Filter</button>
+          </form>
+        </div>
+        <div class="movie-grid">
+          <% movies.forEach(movie => { %>
+            <div class="movie-card">
+              <img src="/images/<%= movie.poster %>" alt="<%= movie.title %> Poster">
+              <h3><%= movie.title %></h3>
+              <p><strong>Genre:</strong> <%= movie.genre %></p>
+              <p><strong>Year:</strong> <%= movie.releaseYear %></p>
+              <a href="/movie/<%= movie._id %>" class="btn">View Details</a>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

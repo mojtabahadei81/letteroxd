@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= user.name %>'s Profile</title>
+  <link rel="stylesheet" href="/stylesheets/userstyles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Welcome, <%= user.name %>!</h1>
+      <nav>
+        <ul>
+          <li><a href="/users/dashboard">Dashboard</a></li>
+          <li><a href="/auth/logout" class="logout-btn">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="user-reviews">
+        <h2>Your Reviews</h2>
+        <% if (reviews.length > 0) { %>
+          <ul class="reviews-list">
+            <% reviews.forEach(review => { %>
+              <li class="review-item">
+                <div class="review-poster">
+                  <img src="/images/<%= review.movie.poster %>" alt="<%= review.movie.title %> Poster">
+                </div>
+                <div class="review-details">
+                  <h3><%= review.movie.title %></h3>
+                  <p><strong>Genre:</strong> <%= review.movie.genre %></p>
+                  <p><strong>Year:</strong> <%= review.movie.releaseYear %></p>
+                  <p><strong>Your Rating:</strong> <%= review.rating %>/5</p>
+                  <p><strong>Your Review:</strong> <%= review.text %></p>
+                  <p class="review-date">Reviewed on <%= review.createdAt.toLocaleDateString() %></p>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        <% } else { %>
+          <p>You haven't reviewed any movies yet.</p>
+        <% } %>
+      </section>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>
+
