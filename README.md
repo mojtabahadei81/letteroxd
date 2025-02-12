@@ -52,67 +52,55 @@ This application allows:
 ## Project Structure
 
 Film-Review-App/
-│   app.js
-│   createAdmin.js
-│   package-lock.json
-│   package.json
-│   README.md
-│   seed.js
-│
-├───bin
-│       www
-│
-├───controllers
-│       authController.js
-│       homeController.js
-│
-├───middleware
-│       authMiddleware.js
-│
-├───models
-│       Movie.js
-│       Review.js
-│       User.js
-│
-├───public
-│   ├───images
-│   │       file.jpg
-│   │       Hoze-Naghashiii-1-207x290.jpg
-│   │       khobbadjelf.jpg
-│   │
-│   ├───javascripts
-│   └───stylesheets
-│           adminstyles.css
-│           style.css
-│           userstyles.css
-│
-├───routes
-│       adminRoutes.js
-│       authRoutes.js
-│       index.js
-│       movieRoutes.js
-│       reviewRoutes.js
-│       users.js
-│
-└───views
-    │   addMovie.ejs
-    │   adminDashboard.ejs
-    │   adminMovies.ejs
-    │   adminUsers.ejs
-    │   editMovie.ejs
-    │   editUser.ejs
-    │   error.ejs
-    │   index.ejs
-    │   index.jade
-    │   login.ejs
-    │   movieDetails.ejs
-    │   signup.ejs
-    │   userDashboard.ejs
-    │
-    └───partials
-            header.ejs
-            topnav.ejs
-yaml
+├── bin/
+│   └── www                      # Application HTTP server startup script
+├── controllers/
+│   ├── authController.js        # Handles authentication-related logic
+│   └── homeController.js        # Controls the home page and dashboard views
+├── middleware/
+│   └── authMiddleware.js        # Custom middleware for route protection
+├── models/
+│   ├── Movie.js                 # Mongoose schema/model for movies
+│   ├── Review.js                # Mongoose schema/model for reviews
+│   └── User.js                  # Mongoose schema/model for users
+├── public/
+│   ├── images/                  # Static image assets
+│   │   ├── file.jpg
+│   │   ├── Hoze-Naghashiii-1-207x290.jpg
+│   │   └── khobbadjelf.jpg
+│   ├── javascripts/             # Client-side JavaScript files
+│   └── stylesheets/             # CSS stylesheets for different layouts
+│       ├── adminstyles.css
+│       ├── style.css
+│       └── userstyles.css
+├── routes/
+│   ├── adminRoutes.js           # Admin-level routes (e.g., movie/user management)
+│   ├── authRoutes.js            # Routes for login, logout, and signup
+│   ├── index.js                 # Main router for home page and general navigation
+│   ├── movieRoutes.js           # Routes for listing movies and movie details
+│   ├── reviewRoutes.js          # Endpoints for submitting and managing reviews
+│   └── users.js                 # Routes for user profile and management functions
+├── views/
+│   ├── partials/                # Reusable view components (e.g., header, navigation)
+│   │   ├── header.ejs
+│   │   └── topnav.ejs
+│   ├── addMovie.ejs             # Admin view for adding new movies
+│   ├── adminDashboard.ejs       # Dashboard view for administrators
+│   ├── adminMovies.ejs          # Admin view for managing movies
+│   ├── adminUsers.ejs           # Admin view for managing users
+│   ├── editMovie.ejs            # View for editing movie details (admin)
+│   ├── editUser.ejs             # View for editing user information (admin)
+│   ├── error.ejs                # Error display page
+│   ├── index.ejs                # Main landing page
+│   ├── login.ejs                # User login page
+│   ├── movieDetails.ejs         # Detailed view for a single movie (with reviews)
+│   ├── signup.ejs               # User signup/registration page
+│   └── userDashboard.ejs        # Dashboard view for authenticated users
+├── app.js                       # Main application setup and configuration
+├── createAdmin.js               # Script to create an admin user account
+├── seed.js                      # Script for seeding the database with sample data
+├── package.json                 # Project metadata and dependency lists
+└── README.md                    # Project documentation (this file)
 
 ---
 
